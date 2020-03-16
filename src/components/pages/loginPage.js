@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
 import { post } from '../../helpers/http.helper';
+import { connect } from 'react-redux';
 
 
 class LoginPage extends Component {
@@ -31,10 +31,7 @@ onUserClick(e) {
             .then(res => {
                 console.log(res)
                 if (res.status) {
-                    //Set-Cookie: userToken=res.token ;
-                    localStorage.setItem('userToken', res.token);
-                    //this.props.userInit({ eposta: kullanici.eposta });
-                    // redirect
+                    localStorage.setItem('userToken', res.token);                  
                     this.setState({
                         hasError: !res.status,
                     });
@@ -47,7 +44,6 @@ onUserClick(e) {
                 
 
             })
-  console.log(kullanici);
 
 
 }
@@ -89,4 +85,10 @@ onUserClick(e) {
   }
 }
 
-export default LoginPage;
+const mapStateToProps = (state) => {
+  return{
+    eposta: state.eposta
+  }
+}
+
+export default connect(mapStateToProps)(LoginPage);
