@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
+import { post } from '../../helpers/http.helper';
 
 
 class LoginPage extends Component {
@@ -26,8 +27,28 @@ onUserClick(e) {
   e.preventDefault();
 
   const kullanici = this.state;
+  post('dogrulama', kullanici)
+            .then(res => {
+                console.log(res)
+                if (res.status) {
+                    //Set-Cookie: userToken=res.token ;
+                    localStorage.setItem('userToken', res.token);
+                    //this.props.userInit({ eposta: kullanici.eposta });
+                    // redirect
+                    this.setState({
+                        hasError: !res.status,
+                    });
+                } else {
+                    this.setState({
+                        hasError: true,
+                        errorMessage: res.message
+                    });
+                }
+                
+
+            })
   console.log(kullanici);
-  //this.props.userInit(kullanici);
+
 
 }
   render() {
