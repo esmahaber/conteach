@@ -1,6 +1,16 @@
-import {combineReducers} from 'redux';
-import users from './users';
+import { combineReducers } from 'redux';
+import LoginUser from './loginReducer';
+import RegisterUser from './registerReducer';
+import Appointment from './appointmentsReducer';
+import Note from './noteReducer';
+
+
+
 
 export default combineReducers({
-    users
+    LoginUser,
+    RegisterUser,
+    Appointment,
+    Note
+
 })
