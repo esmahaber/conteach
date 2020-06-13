@@ -71,7 +71,6 @@ class calendarr extends React.Component {
         if (!!allDay) {
 
            if (!!document.getElementsByClassName("rbc-day-slot")) {
-            console.log(allDay.length);
             for (var j = 0; j < document.getElementsByClassName("rbc-day-slot").length; j++){
               
              document.getElementsByClassName("rbc-day-slot")[i].id += "allDayEvent"
@@ -178,7 +177,6 @@ class calendarr extends React.Component {
   }
 
   render() {
-    console.log(this.state.allDay)
     return (
       <div className="card shadow mb-4">
         <div className="card-header py-3">

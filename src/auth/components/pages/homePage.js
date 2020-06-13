@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Sidebar from '../sidebar'
 import Navbar from '../navbar'
 import Profile from '../profile'
+import ProfileSettings from '../profileUpdate'
+
 import Calendar from '../calendar'
 import StudentList from '../studentList'
-import LeaveNot from '../LeaveNote'
+import LeaveNote from '../LeaveNote'
 
 //import AdminNote from '../LeaveNote'
 
@@ -61,23 +63,21 @@ class HomePage extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div id="wrapper">
 
-        <Sidebar onChangeView={this.changeView.bind(this)}  />
+        <Sidebar onChangeView={this.changeView.bind(this)} />
         <div id="content-wrapper" className="content-wrapper">
           <div id="content">
-            <Navbar />
+            <Navbar onChangeView={this.changeView.bind(this)} />
             <div id="container-fluid" >
               {
-                this.state.componentView === 1 ?
-                  <Calendar />
+                this.state.componentView === 1 ? <Calendar />
                   :
-                  2 ? <StudentList />
-                    :
-                    <LeaveNot/>
-
+                  this.state.componentView === 2 ? <StudentList />
+                    : this.state.componentView === 3 ? <LeaveNote />
+                      : this.state.componentView === 4 ? <Profile onChangeView={this.changeView.bind(this)} />
+                        : <ProfileSettings />
               }
 
             </div>

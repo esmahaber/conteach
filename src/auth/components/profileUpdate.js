@@ -38,46 +38,39 @@ class ProfileUpdate extends Component {
     render() {
         return (
 
-            <div >
-
-                <div>
-                    <form className="card-body card mb-4 py-3 profileInfo" onChange={this.onChange} >
-
-                        İsim:
-                                  <input type="text" name="isim" className="inputClass" defaultValue={sessionStorage.getItem("userName")} />
+            <div id="container-fluid" >
 
 
-                                    Soyisim:
-                                    <input type="text" name="soyisim" className="inputClass" defaultValue={sessionStorage.getItem("userLastname")} />
+                    <div className="card mb-4" id="profilCard" >
+                        <div className="card-header">
+                            Kullanıcı Bilgilerini Güncelle
+                            
+                         </div>
+                         <div >
 
+                            <form className="card-body card py-3 profileInfo" onChange={this.onChange} >
+                             İsim:
+                            <input type="text" name="isim" className="inputClass" defaultValue={sessionStorage.getItem("userName")} />
+                             Soyisim:
+                            <input type="text" name="soyisim" className="inputClass" defaultValue={sessionStorage.getItem("userLastname")} />
+                             Email:
+                            <input type="text" name="eposta" className="inputClass" defaultValue={sessionStorage.getItem("userEposta")} />
+                             Öğrenci Numarası:
+                            <input type="text" name="ogr_no" className="inputClass" defaultValue={sessionStorage.getItem("userStudNo")} />
+                             Doğum Tarihi:
+                            <input type="date" name="dogum_tarihi" className="inputClass" defaultValue={sessionStorage.getItem("userBirthDay")} />
+                             Şifre:
+                            <input type="password" name="sifre" className="inputClass" placeholder="*****" />
+                            </form>
 
-                                    Email:
-                                    <input type="text" name="eposta" className="inputClass" defaultValue={sessionStorage.getItem("userEposta")} />
-
-
-
-                                    Öğrenci Numarası:
-                                    <input type="text" name="ogr_no" className="inputClass" defaultValue={sessionStorage.getItem("userStudNo")} />
-
-
-                                    Doğum Tarihi:
-                                    <input type="date" name="dogum_tarihi" className="inputClass" defaultValue={sessionStorage.getItem("userBirthDay")} />
-
-                                    Şifre:
-                                    <input type="password" name="sifre" className="inputClass" placeholder="*****" />
-
-
-                    </form>
-
-                    <button href="#" className="btn btn-success btn-icon-split"
-                        onClick={this.onSubmit}
-
-                    >
-                        Kaydet
-                                </button>
-
-                </div>
-            </div>
+                     <button className="btn btn-success btn-icon-split"
+                             onClick={this.onSubmit} >
+                         Kaydet
+                     </button>
+                                  
+                                </div>
+                            </div>
+                        </div>           
 
         );
     };

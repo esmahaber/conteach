@@ -5,7 +5,7 @@ export default function profileInfo({ onChangeView }) {
     // let header = "Kullanıcı Bilgileri";
     return (
         <div>
-            <div className="card-body card mb-4 py-3 profileInfo"
+            <div className="card-body card py-3 profileInfo"
             >
                 {sessionStorage.getItem("userName")} {sessionStorage.getItem("userLastname")}
                 <hr />
@@ -20,7 +20,7 @@ export default function profileInfo({ onChangeView }) {
             <button className="btn btn-success btn-icon-split"
                 onClick={e => {
                     e.preventDefault();
-                    onChangeView(3);
+                    onChangeView(5);
                 }}
             >
                 Bilgileri Güncelle

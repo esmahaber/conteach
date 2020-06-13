@@ -18,7 +18,6 @@ export default class Messages extends Component {
         const response = await axios.get(
             `${config.apiUrl}/api/mesajlar`, this.state.alici_no
         );
-        console.log(response.data)
         this.setState({
             data: response.data,
             totalRows: response.data.total,

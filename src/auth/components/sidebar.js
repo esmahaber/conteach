@@ -1,9 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 
 function Sidebar(props) {
-    console.log(props)
     const onChangeView = props.onChangeView;
 
     return (
@@ -40,9 +38,13 @@ function Sidebar(props) {
             </li>
             <hr className="sidebar-divider my-0" />
             <li className="nav-item">
-                <a className="nav-link" href="/auth/home/note">
+                <button className="nav-link" onClick={e => {
+                    e.preventDefault();
+                    onChangeView(3);
+                }
+                }>
                     <i className="far fa-calendar-alt" />
-                    <span>Not Bırak</span></a>
+                    <span>Not Bırak</span></button>
             </li>
             {/* Divider */}
             <hr className="sidebar-divider d-none d-md-block" />

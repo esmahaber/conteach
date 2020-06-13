@@ -4,7 +4,7 @@ import axios from 'axios';
 import MessageButton from '../messageButton'
 
 var check = false;
-
+export var unReadCount = 0;
 export const messagesModalShow = () => {
   check = !check;
   check ? document.getElementById("messages").classList.add('show') :
@@ -26,15 +26,18 @@ export default class messageModal extends Component {
         alici_no: this.state.alici_no
       }
 
-      console.log(data)
       const response = await axios.post(
         `${config.apiUrl}/api/mesajlar/`, data
       );
-      console.log(response.data)
+      for (var i = 0; i < response.data.length; i++)
+        if (response.data[i].okundu === 0) {
+         unReadCount++
+        }
       this.setState({
         data: response.data,
         loading: false,
       });
+
     }
     getMessage();
   }
@@ -52,6 +55,7 @@ export default class messageModal extends Component {
           this.state.data.map(mesaj =>
             <MessageButton
               key={mesaj.id}
+              id={mesaj.id}
               title={mesaj.mesaj}
               sender="Admin"
               date={mesaj.gonderim_tarihi}

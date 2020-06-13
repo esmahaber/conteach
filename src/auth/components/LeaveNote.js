@@ -30,57 +30,43 @@ class leaveNote extends React.Component {
   render() {
     // console.log(document.getElementById("noteMarq"))
     return (
-      <div id="wrapper">
-        <Sidebar />
-        <div id="content-wrapper" className="content-wrapper">
-          <div id="content">
-            <Navbar />
-            <div id="container-fluid" >
 
-              <div className="Card card ">
-                <div className="card-body" >
+      <div className="Card card ">
+        <div className="card-body" >
 
 
-                  <div className="smallCard card ">
-                    <div className="">
-                      <h6 className="m-2 ">Ekran</h6>
-                    </div>
-                    <div className="card-body" style={{ textAlign: "center" }}>
-                      <Screen
-                        myNote={this.state.notlar}
-                      />
-                    </div>
-                  </div>
+          <div className="smallCard card ">
+            <div className="">
+              <h6 className="m-2 ">Ekran</h6>
+            </div>
+            <div className="card-body" style={{ textAlign: "center" }}>
+              <Screen
+                myNote={this.state.notlar}
+              />
+            </div>
+          </div>
 
-                  <div className="smallCard card shadow">
-                    <div className="card-header py-3">
-                      <h6 className="m-0 font-weight-bold text-primary">Ekran Notu Bırak</h6>
-                    </div>
-                    <div className="card-body" style={{ textAlign: "center" }}>
-                      <textarea name="admin_note" id="adminNote" onChange={this.onChange}
-                        placeholder="Notunuzu buraya yazabilirsiniz..."
-                      />
-                      <div>
-                        <button
-                         
-                          onClick={this.onClick}
-                          className="btn btn-success" style={{ float: "right", margin: "10px" }}
+          <div className="smallCard card shadow">
+            <div className="card-header py-3">
+              <h6 className="m-0 font-weight-bold text-primary">Ekran Notu Bırak</h6>
+            </div>
+            <div className="card-body" style={{ textAlign: "center" }}>
+              <textarea name="admin_note" id="adminNote" onChange={this.onChange}
+                placeholder="Notunuzu buraya yazabilirsiniz..."
+              />
+              <div>
+                <button
 
-                        >Gönder</button>
-                      </div>
+                  onClick={this.onClick}
+                  className="btn btn-success" style={{ float: "right", margin: "10px" }}
 
-                    </div>
-                  </div>
-                </div>
+                >Gönder</button>
               </div>
 
             </div>
           </div>
         </div>
-
       </div>
-
-
 
     );
   };

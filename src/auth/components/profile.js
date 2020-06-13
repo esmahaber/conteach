@@ -7,8 +7,8 @@ import ProfileUpdate from './profileUpdate';
 
 
 const Profile= (props) =>{
-        const onView = props.onView;
         const onChangeView = props.onChangeView;
+        console.log(props.onChangeView)
         return (
             <div id="container-fluid" >
 
@@ -23,9 +23,7 @@ const Profile= (props) =>{
                             <div className="form-group row">
                                 <div >
 
-                                    {onView === 2 ? <ProfileInfo onChangeView = {onChangeView}/> : 
-                                     onView === 3 ? <ProfileUpdate/> : null
-                                    }                                
+                                    <ProfileInfo onChangeView = {onChangeView}/>
 
                                     
                                 </div>
@@ -34,7 +32,7 @@ const Profile= (props) =>{
 
                         </div>
                     </div>
-                     <ProfilePhoto onView={props.onView} />
+                     <ProfilePhoto onChangeView={onChangeView} />
 
                 </div>
             </div>

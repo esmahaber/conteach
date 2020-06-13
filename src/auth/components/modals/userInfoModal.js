@@ -26,19 +26,6 @@ function logoutModalShow(e) {
 class UserInfo extends Component {
 
 
-
-    onClicked = (e) => {
-        e.preventDefault();
-        if (e.target.name === "profile")
-            this.props.userProfile();
-        if (e.target.name === "settings")
-            this.props.userSettings();
-        console.log(this.props)
-        userModal();
-
-    }
-
-
     render() {
         const onChangeView = this.props.onChangeView;
 
@@ -46,29 +33,27 @@ class UserInfo extends Component {
             <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown"
                 id="userInfo"
             >
-                <Link exact='true' to='auth/home/profile'> <button className="dropdown-item"
-                    name="profile"
-                    onClick={e => {
+                <Link exact='true' to='/auth/home/'> <button className="dropdown-item"
+                    name="profile" onClick={e => {
                         e.preventDefault();
-                        onChangeView(1);
-                        userModal();
+                        onChangeView(4);
                     }
                     }
+
+
                 >
                     <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
       Profil
     </button> </Link>
 
-                <Link exact='true' to='auth/home/profile'>
+                <Link exact='true' to='/auth/home/profile'>
 
                     <button className="dropdown-item"
                         name="settings"
                         onClick={e => {
                             e.preventDefault();
-                            onChangeView(2);
-                            userModal();
-                        }
-                        } >
+                            onChangeView(5);
+                        }}>
                         <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
       Ayarlar
     </button>

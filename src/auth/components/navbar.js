@@ -1,13 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import UserInfoModal, { userModal } from './modals/userInfoModal';
 import MessagesModal, { messagesModalShow } from './modals/messageModal';
-import { userProfile, userSettings } from '../../actions/loginActions';
+import { unReadCount } from './modals/messageModal'
 
-
-const Navbar = (user) => {
-
+const Navbar = (props) => {
   return (
     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-5 static-top shadow-bottom">
       {/* Sidebar Toggle (Topbar) */}
@@ -42,7 +38,7 @@ const Navbar = (user) => {
           <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" data-target="#ornekModal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i className="fas fa-envelope fa-fw" onClick={messagesModalShow} />
             {/* Counter - Messages */}
-            <span className="badge badge-danger badge-counter">7</span>
+            <span className="badge badge-danger badge-counter">{unReadCount}</span>
           </a>
 
           {/* Dropdown - Messages */}
@@ -64,10 +60,7 @@ const Navbar = (user) => {
           {/* Dropdown - User Information */}
 
           <UserInfoModal
-            done={user.user.LoginUser.profilButton}
-            userProfile={user.userProfile}
-            userSettings={user.userSettings}
-            onChangeView={user.onChangeView}
+            onChangeView={props.onChangeView}
           />
 
         </li>
@@ -77,20 +70,8 @@ const Navbar = (user) => {
   );
 };
 
-Navbar.propTypes = {
-  user: PropTypes.any
-}
 
-const mapStateToProps = state => ({
-  user: state
-});
 
-const mapDispatchToProps = {
-  userProfile,
-  userSettings
-
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default Navbar;
 
 

@@ -1,30 +1,32 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom';
-import config from '../../../config';
+import config from '../../config';
 import axios from 'axios';
 
-
-const changeReadReceipt = async page => {
-    var data = {
-        alici_no: this.state.alici_no
-    }
-
-    console.log(data)
-    const response = await axios.post(
-        `${config.apiUrl}/api/mesajlar/`, data
-    );
-    console.log(response.data)
-    this.setState({
-        data: response.data,
-        loading: false,
-    });
+function change(id) {
+    console.log(id)
 }
 
-const MessageButton = ({ title, sender, date, readReceipt }) => (
-    readReceipt ?
+const MessageButton = ({ id, title, sender, date, readReceipt }) => {
+
+    const changeReadReceipt = async page => {
+        var data;
+
+        console.log(page.id)
+        /* const response = await axios.post(
+             `${config.apiUrl}/api/mesajlar/`, data
+         );
+         console.log(response.data)
+         this.setState({
+             data: response.data,
+             loading: false,
+         });
+         */
+    }
+    const readMessage = (
         <button className="dropdown-item d-flex align-items-center" href="#"
-            onClick={changeReadReceipt}
+
         >
             <div className="dropdown-list-image mr-3">
                 <img className="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="" />
@@ -37,8 +39,11 @@ const MessageButton = ({ title, sender, date, readReceipt }) => (
 
             </div>
         </button>
-        :
-        <button className="dropdown-item d-flex align-items-center" href="#">
+    );
+    const unreadMessage = (
+        <button className="dropdown-item d-flex align-items-center"
+            onClick={changeReadReceipt}
+        >
             <div className="dropdown-list-image mr-3">
                 <img className="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="" />
                 <div className="status-indicator" />
@@ -50,7 +55,16 @@ const MessageButton = ({ title, sender, date, readReceipt }) => (
                 </div>
             </div>
         </button>
+    );
+    return (
+        <div>
+            {readReceipt ? readMessage : unreadMessage}
+        </div>
+    );
 
-);
 
+
+
+
+};
 export default MessageButton;

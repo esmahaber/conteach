@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 
 
  function NoteButton  (props) {
-   console.log(props)
     return (
       <div>        
         <button className="btn btn-secondary btn-icon-split" style={{ float: 'right', marginTop: '25px' }}

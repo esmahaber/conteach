@@ -65,16 +65,15 @@ export default class AdvancedPaginationTable extends Component {
             loading: false,
         });
     }
-    handleButtonClick = (state) => {
 
-        console.log(state.selectedRows[0].ogr_no);
+    handleButtonClick = (state) => {
+        console.log(state.ogr_no);
         this.setState({
             messagesButton: true,
-            selectedRows: state.selectedRows,
-            alici_no: state.selectedRows[0].ogr_no
-
+            selectedRows: state.selectedRows
         });
-        console.log(this.state)
+
+
     }
 
     handleChange = state => {
@@ -85,12 +84,20 @@ export default class AdvancedPaginationTable extends Component {
         this.setState({ selectedRows: state.selectedRows });
     }
 
+    handleRowClicked = row => {
+        console.log(`${row.isim} was clicked!`);
+        this.setState({
+            alici_no: row.ogr_no
+
+        });
+    }
 
     onChange = (e) => {
         this.setState({
             mesaj: e.target.value
         })
     }
+
     onSendMessage = async page => {
         var data = {
             gonderen_no: this.state.gonderen_no,
@@ -102,17 +109,16 @@ export default class AdvancedPaginationTable extends Component {
         const response = await axios.post(
             `${config.apiUrl}/api/mesajlar/yeni_mesaj`, data
         );
-        
+
         console.log(response.data)
         this.setState({
             data: response.data,
             totalRows: response.data.total,
             loading: false,
         });
-      
-
 
     }
+
     render() {
         const { loading, data, totalRows } = this.state;
 
@@ -135,7 +141,7 @@ export default class AdvancedPaginationTable extends Component {
 
                 </div>
                 {
-                    this.state.data.status ? <InfoModal message ={ "Mesaj başarılı bir şekilde gönderildi."} /> : null
+                    this.state.data.status ? <InfoModal message={"Mesaj başarılı bir şekilde gönderildi."} /> : null
                 }
             </div>
 
@@ -150,9 +156,9 @@ export default class AdvancedPaginationTable extends Component {
                     progressPending={loading}
                     pagination
                     paginationServer
-                    onSelectedRowsChange={this.handleButtonClick}
-                    selectableRows
                     highlightOnHover
+                    onRowClicked={this.handleRowClicked}
+
 
 
                 />

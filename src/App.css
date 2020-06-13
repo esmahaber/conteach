@@ -106,6 +106,9 @@ h1, h2, h3, h4, h5, h6 {
 .profileInfo{
   width: 500px;
   border-style: none !important;
+  margin-top: 50px !important;
+  margin-bottom: 0px !important;
+  
 }
 
 .inputClass{
