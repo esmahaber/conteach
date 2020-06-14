@@ -11,8 +11,8 @@ const selectProps = { indeterminate: isIndeterminate => isIndeterminate };
 
 const columns = memoize(clickHandler => [
     {
-        cell: row => <button className="btn btn-danger btn-circle" row={row} onClick={clickHandler}>
-            <i className="fa fa-envelope"></i>
+        cell: row => <button className="btn btn-danger btn-circle" id={row.ogr_no} onClick={clickHandler}>
+            <i className="fa fa-envelope" id={row.ogr_no}></i>
         </button>,
         ignoreRowClick: true,
         allowOverflow: true,
@@ -67,10 +67,12 @@ export default class AdvancedPaginationTable extends Component {
     }
 
     handleButtonClick = (state) => {
-        console.log(state.ogr_no);
+        console.log(state.target.id);
         this.setState({
+            alici_no: state.target.id,
             messagesButton: true,
-            selectedRows: state.selectedRows
+            selectedRows: state.selectedRows,
+           
         });
 
 
@@ -84,13 +86,6 @@ export default class AdvancedPaginationTable extends Component {
         this.setState({ selectedRows: state.selectedRows });
     }
 
-    handleRowClicked = row => {
-        console.log(`${row.isim} was clicked!`);
-        this.setState({
-            alici_no: row.ogr_no
-
-        });
-    }
 
     onChange = (e) => {
         this.setState({
@@ -157,10 +152,6 @@ export default class AdvancedPaginationTable extends Component {
                     pagination
                     paginationServer
                     highlightOnHover
-                    onRowClicked={this.handleRowClicked}
-
-
-
                 />
         );
     }

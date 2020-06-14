@@ -31,7 +31,7 @@ export default class messageModal extends Component {
       );
       for (var i = 0; i < response.data.length; i++)
         if (response.data[i].okundu === 0) {
-         unReadCount++
+          unReadCount++
         }
       this.setState({
         data: response.data,

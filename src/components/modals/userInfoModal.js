@@ -74,10 +74,7 @@ class UserInfo extends Component {
       Ayarlar
     </button>
                 </Link>
-                <button className="dropdown-item" >
-                    <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400" />
-      Activity Log
-    </button>
+                
                 <div className="dropdown-divider" />
                 <button className="dropdown-item" data-toggle="modal" data-target="#logoutModal"
                     onClick={logoutModalShow}

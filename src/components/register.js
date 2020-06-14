@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { onNewUserSubmit } from '../actions/registerActions';
 import InlineError from './InlineError'
+import SuccessAlert from './successAlert'
+
 
 
 let Errors = {};
+let Alerts = {}
 class InputUser extends Component {
     constructor() {
         super();
@@ -22,54 +25,65 @@ class InputUser extends Component {
 
     onChange = (e) => {
         e.preventDefault();
-        console.log([e.target.name] + "" + e.target.value)
         this.setState({
             [e.target.name]: e.target.value
         })
     }
 
     onSubmit = (e) => {
-
+        console.log("onclick")
         // if (Object.keys(errors).length === 0) {
         //  this.props.onNewUserSubmit(this.state); }
         e.preventDefault();
-        if ((e.target.sifre) === (e.target.tekrarSifre))
-            this.props.onNewUserSubmit(this.state)
-                .then(e => {
-                    console.log(this.props.newUser.RegisterUser.error)
-                    console.log(this.props.newUser.RegisterUser)
-                    //console.log(this.props.newUser.RegisterUser)
-                    if (!!this.props.newUser.RegisterUser.error) {
-                        const errors = this.validate();
-                        console.log(errors)
 
-                        Errors = errors;
-                        this.setState({
-                            hasError: true
-                        })
+        this.props.onNewUserSubmit(this.state)
+            .then(e => {
 
-                    }
-                })
-                .then(e => {
+                console.log(this.props.newUser.RegisterUser)
+                console.log(this.props.newUser.RegisterUser.user ? "true" : "false")
 
-                })
+                // console.log(!!this.props.newUser.RegisterUser.user.status)
+                //console.log(this.props.newUser.RegisterUser)
+                if (!!this.props.newUser.RegisterUser.error) {
+                    const errors = this.validate();
+                    console.log(errors)
+                    Errors = errors;
+                    Alerts = {}
+                    this.setState({
+                        hasError: true
+                    })
+
+                } else {
+                    Alerts.title = "Kayıt başarılı";
+                    this.setState({
+                        hasError: false
+                    })
+
+                }
+            })
+            .then(e => {
+
+            })
 
     };
     validate = () => {
 
         const errors = {};
-       
+
+
         if (!!this.props.newUser.RegisterUser.error.errors)
             errors.title = this.props.newUser.RegisterUser.error.errors[0].msg
-            if (!!this.props.newUser.RegisterUser.error.error)
+        if (!!this.props.newUser.RegisterUser.error.error)
             errors.title = this.props.newUser.RegisterUser.error.error
-            
-            return errors;
+
+        return errors;
     };
 
 
     render() {
         const errors = Errors;
+        const alerts = Alerts;
+
         return (
             <div className="col-lg-7 card o-hidden border-0 shadow-lg my-5">
                 <div className="p-5">
@@ -79,6 +93,7 @@ class InputUser extends Component {
 
                     <form className="user">
                         {errors.title && <InlineError message={errors.title} />}
+                        {alerts.title && <SuccessAlert message={alerts.title} />}
 
                         <div className="form-group row">
                             <div className="col-sm-6 mb-3 mb-sm-0">
@@ -97,19 +112,16 @@ class InputUser extends Component {
                         <div className="form-group">
                             <input type="text" className="form-control form-control-user" name="ogr_no" onChange={this.onChange} placeholder="Öğrenci Numarası" />
                         </div>
-                        <div className="form-group row">
-                            <div className="col-sm-6 mb-3 mb-sm-0">
-                                <input type="password" className="form-control form-control-user" name="sifre" onChange={this.onChange} placeholder="Şifre" />
-                            </div>
-                            <div className="col-sm-6">
-                                <input type="password" className="form-control form-control-user" name="tekrarSifre" onChange={this.onChange} placeholder="Tekrar Şifre" />
-                            </div>
+                        <div className="form-group">
+
+                            <input type="password" className="form-control form-control-user" name="sifre" onChange={this.onChange} placeholder="Şifre" />
+
+
                         </div>
 
                         <button className="btn btn-primary btn-user btn-block" onClick={this.onSubmit}>
                             Kaydol
- </button>
-
+                        </button>
                     </form>
                     <hr />
                     <div className="text-center">

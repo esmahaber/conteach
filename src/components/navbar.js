@@ -5,6 +5,7 @@ import UserInfoModal, { userModal } from './modals/userInfoModal';
 import AlertsModal, { alertsModalShow } from './modals/alertsModal';
 import MessagesModal, { messagesModalShow } from './modals/messageModal';
 import { userProfile, userSettings } from '../actions/loginActions'
+import { unReadCount } from './modals/messageModal'
 
 
 
@@ -18,17 +19,7 @@ const Navbar = (user) => {
       <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
         <i className="fa fa-bars" />
       </button>
-      {/* Topbar Search */}
-      <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-        <div className="input-group">
-          <input type="text" className="form-control bg-light border-0 small" placeholder="Ara" aria-label="Search" aria-describedby="basic-addon2" />
-          <div className="input-group-append">
-            <button className="btn btn-primary" >
-              <i className="fas fa-search fa-sm" />
-            </button>
-          </div>
-        </div>
-      </form>
+      
       {/* Topbar Navbar */}
       <ul className="navbar-nav ml-auto">
         {/* Nav Item - Search Dropdown (Visible Only XS) */}
@@ -40,29 +31,14 @@ const Navbar = (user) => {
           {/* Dropdown - Messages */}
 
         </li>
-        {/* Nav Item - Alerts */}
-        <li className="nav-item dropdown no-arrow mx-1" >
-          <a className="nav-link dropdown-toggle"
-            id="alertsDropdown" data-toggle="dropdown"
-            aria-haspopup="true"
-            onClick={alertsModalShow}
-          >
-            <i className="fas fa-bell fa-fw" />
-            {/* Counter - Alerts */}
-            <span className="badge badge-danger badge-counter">3+</span>
-          </a>
-          <AlertsModal />
-
-          {/* Dropdown - Alerts */}
-
-        </li>
+    
 
         {/* Nav Item - Messages */}
         <li className="nav-item dropdown no-arrow mx-1">
           <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i className="fas fa-envelope fa-fw" onClick={messagesModalShow} />
             {/* Counter - Messages */}
-            <span className="badge badge-danger badge-counter">7</span>
+            <span className="badge badge-danger badge-counter">{unReadCount}</span>
           </a>
 
           {/* Dropdown - Messages */}
